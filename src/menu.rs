@@ -1,6 +1,3 @@
-// Copyright 2019-2021 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-
 //! **UNSTABLE** -- The `Menu` struct and associated types.
 //!
 //! [ContextMenu][context_menu] is used to created a tray menu.

@@ -1,6 +1,3 @@
-// Copyright 2019-2021 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-
 //! **UNSTABLE** -- The `SystemTray` struct and associated types.
 //!
 //! Use [SystemTrayBuilder][tray_builder] to create your tray instance.

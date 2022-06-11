@@ -1,6 +1,3 @@
-// Copyright 2019-2021 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-
 use cocoa::{
     appkit::{NSApp, NSApplication, NSButton, NSEventModifierFlags, NSMenu, NSMenuItem},
     base::{id, nil, selector},

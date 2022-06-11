@@ -1,6 +1,3 @@
-// Copyright 2019-2021 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-
 #![allow(non_snake_case, unused_unsafe)]
 
 use std::sync::Once;

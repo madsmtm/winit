@@ -1,6 +1,3 @@
-// Copyright 2019-2021 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-
 use super::{
     menu::{subclass_proc as menu_subclass_proc, Menu, MenuHandler},
     util, OsError,

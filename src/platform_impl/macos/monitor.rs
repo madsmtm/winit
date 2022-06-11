@@ -1,6 +1,3 @@
-// Copyright 2019-2021 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-
 use std::{collections::VecDeque, fmt};
 
 use super::{ffi, util};

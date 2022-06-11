@@ -1,6 +1,3 @@
-// Copyright 2019-2021 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-
 fn main() {
     // If building for macos and WINIT_LINK_COLORSYNC is set to true
     // use CGDisplayCreateUUIDFromDisplayID from ColorSync instead of CoreGraphics
