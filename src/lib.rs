@@ -133,15 +133,15 @@
 //! [`platform`]: platform
 //! [`raw_window_handle`]: ./window/struct.Window.html#method.raw_window_handle
 #![allow(
-  clippy::match_str_case_mismatch,
-  clippy::upper_case_acronyms,
-  clippy::from_over_into,
-  clippy::option_map_unit_fn,
-  clippy::needless_lifetimes,
-  clippy::type_complexity,
-  clippy::identity_op,
-  clippy::wrong_self_convention,
-  clippy::non_send_fields_in_send_ty
+    clippy::match_str_case_mismatch,
+    clippy::upper_case_acronyms,
+    clippy::from_over_into,
+    clippy::option_map_unit_fn,
+    clippy::needless_lifetimes,
+    clippy::type_complexity,
+    clippy::identity_op,
+    clippy::wrong_self_convention,
+    clippy::non_send_fields_in_send_ty
 )]
 #![deny(rustdoc::broken_intra_doc_links)]
 
@@ -178,11 +178,11 @@ mod platform_impl;
 #[cfg(feature = "tray")]
 pub mod system_tray;
 #[cfg(any(
-  target_os = "linux",
-  target_os = "dragonfly",
-  target_os = "freebsd",
-  target_os = "netbsd",
-  target_os = "openbsd"
+    target_os = "linux",
+    target_os = "dragonfly",
+    target_os = "freebsd",
+    target_os = "netbsd",
+    target_os = "openbsd"
 ))]
 #[cfg(feature = "tray")]
 pub mod system_tray;

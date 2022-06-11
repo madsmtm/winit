@@ -29,12 +29,12 @@
 //! [context_menu]: crate::menu::ContextMenu
 
 use crate::{
-  error::OsError,
-  event_loop::EventLoopWindowTarget,
-  menu::ContextMenu,
-  platform_impl::{
-    SystemTray as SystemTrayPlatform, SystemTrayBuilder as SystemTrayBuilderPlatform,
-  },
+    error::OsError,
+    event_loop::EventLoopWindowTarget,
+    menu::ContextMenu,
+    platform_impl::{
+        SystemTray as SystemTrayPlatform, SystemTrayBuilder as SystemTrayBuilderPlatform,
+    },
 };
 
 pub use crate::icon::{BadIcon, Icon};
@@ -43,36 +43,36 @@ pub use crate::icon::{BadIcon, Icon};
 pub struct SystemTrayBuilder(pub(crate) SystemTrayBuilderPlatform);
 
 impl SystemTrayBuilder {
-  /// Creates a new SystemTray for platforms where this is appropriate.
-  pub fn new(icon: Icon, tray_menu: Option<ContextMenu>) -> Self {
-    Self(SystemTrayBuilderPlatform::new(
-      icon,
-      tray_menu.map(|m| m.0.menu_platform),
-    ))
-  }
+    /// Creates a new SystemTray for platforms where this is appropriate.
+    pub fn new(icon: Icon, tray_menu: Option<ContextMenu>) -> Self {
+        Self(SystemTrayBuilderPlatform::new(
+            icon,
+            tray_menu.map(|m| m.0.menu_platform),
+        ))
+    }
 
-  /// Builds the SystemTray.
-  ///
-  /// Possible causes of error include denied permission, incompatible system, and lack of memory.
-  pub fn build<T: 'static>(
-    self,
-    window_target: &EventLoopWindowTarget<T>,
-  ) -> Result<SystemTray, OsError> {
-    self.0.build(window_target)
-  }
+    /// Builds the SystemTray.
+    ///
+    /// Possible causes of error include denied permission, incompatible system, and lack of memory.
+    pub fn build<T: 'static>(
+        self,
+        window_target: &EventLoopWindowTarget<T>,
+    ) -> Result<SystemTray, OsError> {
+        self.0.build(window_target)
+    }
 }
 
 /// Represents a System Tray instance.
 pub struct SystemTray(pub SystemTrayPlatform);
 
 impl SystemTray {
-  /// Set new tray icon.
-  pub fn set_icon(&mut self, icon: Icon) {
-    self.0.set_icon(icon)
-  }
+    /// Set new tray icon.
+    pub fn set_icon(&mut self, icon: Icon) {
+        self.0.set_icon(icon)
+    }
 
-  /// Set new tray menu.
-  pub fn set_menu(&mut self, tray_menu: &ContextMenu) {
-    self.0.set_menu(&tray_menu.0.menu_platform)
-  }
+    /// Set new tray menu.
+    pub fn set_menu(&mut self, tray_menu: &ContextMenu) {
+        self.0.set_menu(&tray_menu.0.menu_platform)
+    }
 }

@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 use std::{
-  collections::HashMap,
-  sync::{Arc, Mutex},
+    collections::HashMap,
+    sync::{Arc, Mutex},
 };
 
 use lazy_static::lazy_static;
@@ -25,43 +25,43 @@ unsafe impl Send for AccelHandle {}
 unsafe impl Sync for AccelHandle {}
 
 lazy_static! {
-  static ref ACCEL_TABLES: Mutex<HashMap<WindowHandle, Arc<AccelTable>>> =
-    Mutex::new(HashMap::default());
+    static ref ACCEL_TABLES: Mutex<HashMap<WindowHandle, Arc<AccelTable>>> =
+        Mutex::new(HashMap::default());
 }
 
 /// A Accelerators Table for Windows
 #[derive(Debug, Clone, Eq, PartialEq, Hash)]
 pub(crate) struct AccelTable {
-  accel: AccelHandle,
+    accel: AccelHandle,
 }
 
 impl AccelTable {
-  fn new(accel: &[ACCEL]) -> AccelTable {
-    let accel = unsafe { CreateAcceleratorTableW(accel) }.unwrap_or_default();
-    AccelTable {
-      accel: AccelHandle(accel.0),
+    fn new(accel: &[ACCEL]) -> AccelTable {
+        let accel = unsafe { CreateAcceleratorTableW(accel) }.unwrap_or_default();
+        AccelTable {
+            accel: AccelHandle(accel.0),
+        }
     }
-  }
 
-  pub(crate) fn handle(&self) -> HACCEL {
-    HACCEL(self.accel.0)
-  }
+    pub(crate) fn handle(&self) -> HACCEL {
+        HACCEL(self.accel.0)
+    }
 }
 
 pub(crate) fn register_accel(hwnd: HWND, accel: &[ACCEL]) {
-  let mut table = ACCEL_TABLES.lock().unwrap();
-  table.insert(WindowHandle(hwnd.0), Arc::new(AccelTable::new(accel)));
+    let mut table = ACCEL_TABLES.lock().unwrap();
+    table.insert(WindowHandle(hwnd.0), Arc::new(AccelTable::new(accel)));
 }
 
 impl Drop for AccelTable {
-  fn drop(&mut self) {
-    unsafe {
-      DestroyAcceleratorTable(self.handle());
+    fn drop(&mut self) {
+        unsafe {
+            DestroyAcceleratorTable(self.handle());
+        }
     }
-  }
 }
 
 pub(crate) fn find_accels(hwnd: HWND) -> Option<Arc<AccelTable>> {
-  let table = ACCEL_TABLES.lock().unwrap();
-  table.get(&WindowHandle(hwnd.0)).cloned()
+    let table = ACCEL_TABLES.lock().unwrap();
+    table.get(&WindowHandle(hwnd.0)).cloned()
 }
