@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 fn main() {
-    use tao::{
+    use winit::{
         accelerator::{Accelerator, RawMods},
         dpi::LogicalSize,
         event::{ElementState, Event, WindowEvent},

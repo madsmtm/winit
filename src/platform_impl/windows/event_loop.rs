@@ -544,7 +544,7 @@ lazy_static! {
     // WPARAM and LPARAM are unused.
     static ref USER_EVENT_MSG_ID: u32 = {
         unsafe {
-            RegisterWindowMessageA("Tao::WakeupMsg")
+            RegisterWindowMessageA("Winit::WakeupMsg")
         }
     };
     // Message sent when we want to execute a closure in the thread.
@@ -552,46 +552,46 @@ lazy_static! {
     // and LPARAM is unused.
     static ref EXEC_MSG_ID: u32 = {
         unsafe {
-            RegisterWindowMessageA("Tao::ExecMsg")
+            RegisterWindowMessageA("Winit::ExecMsg")
         }
     };
     static ref PROCESS_NEW_EVENTS_MSG_ID: u32 = {
         unsafe {
-            RegisterWindowMessageA("Tao::ProcessNewEvents")
+            RegisterWindowMessageA("Winit::ProcessNewEvents")
         }
     };
     /// lparam is the wait thread's message id.
     static ref SEND_WAIT_THREAD_ID_MSG_ID: u32 = {
         unsafe {
-            RegisterWindowMessageA("Tao::SendWaitThreadId")
+            RegisterWindowMessageA("Winit::SendWaitThreadId")
         }
     };
     /// lparam points to a `Box<Instant>` signifying the time `PROCESS_NEW_EVENTS_MSG_ID` should
     /// be sent.
     static ref WAIT_UNTIL_MSG_ID: u32 = {
         unsafe {
-            RegisterWindowMessageA("Tao::WaitUntil")
+            RegisterWindowMessageA("Winit::WaitUntil")
         }
     };
     static ref CANCEL_WAIT_UNTIL_MSG_ID: u32 = {
         unsafe {
-            RegisterWindowMessageA("Tao::CancelWaitUntil")
+            RegisterWindowMessageA("Winit::CancelWaitUntil")
         }
     };
     // Message sent by a `Window` when it wants to be destroyed by the main thread.
     // WPARAM and LPARAM are unused.
     pub static ref DESTROY_MSG_ID: u32 = {
         unsafe {
-            RegisterWindowMessageA("Tao::DestroyMsg")
+            RegisterWindowMessageA("Winit::DestroyMsg")
         }
     };
     // WPARAM is a bool specifying the `WindowFlags::MARKER_RETAIN_STATE_ON_SIZE` flag. See the
     // documentation in the `window_state` module for more information.
     pub static ref SET_RETAIN_STATE_ON_SIZE_MSG_ID: u32 = unsafe {
-        RegisterWindowMessageA("Tao::SetRetainMaximized")
+        RegisterWindowMessageA("Winit::SetRetainMaximized")
     };
     static ref THREAD_EVENT_TARGET_WINDOW_CLASS: Vec<u16> = unsafe {
-        let class_name= util::encode_wide("Tao Thread Event Target");
+        let class_name= util::encode_wide("Winit Thread Event Target");
 
         let class = WNDCLASSEXW {
             cbSize: mem::size_of::<WNDCLASSEXW>() as u32,
@@ -729,14 +729,14 @@ fn normalize_pointer_pressure(pressure: u32) -> Option<Force> {
     }
 }
 
-/// Flush redraw events for Tao's windows.
+/// Flush redraw events for Winit's windows.
 ///
-/// Tao's API guarantees that all redraw events will be clustered together and dispatched all at
+/// Winit's API guarantees that all redraw events will be clustered together and dispatched all at
 /// once, but the standard Windows message loop doesn't always exhibit that behavior. If multiple
 /// windows have had redraws scheduled, but an input event is pushed to the message queue between
 /// the `WM_PAINT` call for the first window and the `WM_PAINT` call for the second window, Windows
 /// will dispatch the input event immediately instead of flushing all the redraw events. This
-/// function explicitly pulls all of Tao's redraw events out of the event queue so that they
+/// function explicitly pulls all of Winit's redraw events out of the event queue so that they
 /// always all get processed in one fell swoop.
 ///
 /// Returns `true` if this invocation flushed all the redraw events. If this function is re-entrant,

@@ -20,7 +20,7 @@ pub use crate::icon::{BadIcon, Icon};
 /// # Example
 ///
 /// ```no_run
-/// use tao::{
+/// use winit::{
 ///     event::{Event, WindowEvent},
 ///     event_loop::{ControlFlow, EventLoop},
 ///     window::Window,
@@ -78,7 +78,7 @@ impl WindowId {
     /// value of this function is that it will always be equal to itself and to future values returned
     /// by this function.  No other guarantees are made. This may be equal to a real `WindowId`.
     ///
-    /// **Passing this into a tao function will result in undefined behavior.**
+    /// **Passing this into a winit function will result in undefined behavior.**
     pub unsafe fn dummy() -> Self {
         WindowId(platform_impl::WindowId::dummy())
     }
@@ -158,7 +158,7 @@ pub struct WindowAttributes {
 
     /// The title of the window in the title bar.
     ///
-    /// The default is `"tao window"`.
+    /// The default is `"winit window"`.
     pub title: String,
 
     /// Whether the window should be maximized upon creation.
@@ -207,7 +207,7 @@ impl Default for WindowAttributes {
             max_inner_size: None,
             position: None,
             resizable: true,
-            title: "tao window".to_owned(),
+            title: "winit window".to_owned(),
             maximized: false,
             fullscreen: None,
             visible: true,

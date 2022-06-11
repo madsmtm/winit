@@ -1,7 +1,7 @@
 // Copyright 2019-2021 Tauri Programme within The Commons Conservancy
 // SPDX-License-Identifier: Apache-2.0
 
-use tao::{
+use winit::{
     event::{ElementState, Event, KeyEvent, MouseButton, StartCause, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     keyboard::Key,
@@ -73,5 +73,5 @@ fn name_windows(window_id: WindowId, switched: bool, window_1: &Window, window_2
             (&window_1, &window_2)
         };
     drag_target.set_title("drag target");
-    other.set_title("tao window");
+    other.set_title("winit window");
 }

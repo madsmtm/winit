@@ -1,7 +1,7 @@
 // Copyright 2019-2021 Tauri Programme within The Commons Conservancy
 // SPDX-License-Identifier: Apache-2.0
 
-use tao::event_loop::EventLoop;
+use winit::event_loop::EventLoop;
 
 #[allow(clippy::single_match)]
 fn main() {

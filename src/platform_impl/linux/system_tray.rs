@@ -28,7 +28,7 @@ impl SystemTrayBuilder {
             temp_icon_path().expect("Failed to create a temp folder for icon");
         icon.inner.write_to_png(&icon_path);
 
-        let mut app_indicator = AppIndicator::new("tao application", "");
+        let mut app_indicator = AppIndicator::new("winit application", "");
         app_indicator.set_icon_theme_path(&parent_path.to_string_lossy());
         app_indicator.set_icon_full(&icon_path.to_string_lossy(), "icon");
 
@@ -101,7 +101,7 @@ impl Drop for SystemTray {
 
 fn temp_icon_path() -> std::io::Result<(PathBuf, PathBuf)> {
     let mut parent_path = std::env::temp_dir();
-    parent_path.push("tao");
+    parent_path.push("winit");
     std::fs::create_dir_all(&parent_path)?;
     let mut icon_path = parent_path.clone();
     icon_path.push(format!("tray-icon-{}.png", uuid::Uuid::new_v4()));

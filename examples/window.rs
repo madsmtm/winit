@@ -1,7 +1,7 @@
 // Copyright 2019-2021 Tauri Programme within The Commons Conservancy
 // SPDX-License-Identifier: Apache-2.0
 
-use tao::{
+use winit::{
     event::{Event, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     window::WindowBuilder,
@@ -14,7 +14,7 @@ fn main() {
     let mut window = Some(
         WindowBuilder::new()
             .with_title("A fantastic window!")
-            .with_inner_size(tao::dpi::LogicalSize::new(128.0, 128.0))
+            .with_inner_size(winit::dpi::LogicalSize::new(128.0, 128.0))
             .build(&event_loop)
             .unwrap(),
     );

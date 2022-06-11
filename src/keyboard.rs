@@ -57,7 +57,7 @@
 
 // --------- BEGGINING OF W3C SHORT NOTICE ---------------------------------------------------------
 //
-// tao: https://github.com/tauri-apps/tao
+// winit: https://github.com/tauri-apps/winit
 //
 // Copyright © 2021 World Wide Web Consortium, (Massachusetts Institute of Technology, European
 // Research Consortium for Informatics and Mathematics, Keio University, Beihang). All Rights

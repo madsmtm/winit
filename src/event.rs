@@ -62,7 +62,7 @@ pub enum Event<'a, T: 'static> {
     /// [`ControlFlow::WaitUntil`](crate::event_loop::ControlFlow::WaitUntil) has elapsed.
     NewEvents(StartCause),
 
-    /// Emitted when the OS sends an event to a tao window.
+    /// Emitted when the OS sends an event to a winit window.
     #[non_exhaustive]
     WindowEvent {
         window_id: WindowId,
@@ -133,7 +133,7 @@ pub enum Event<'a, T: 'static> {
     /// - The application has explicitly requested a redraw via
     ///   [`Window::request_redraw`](crate::window::Window::request_redraw).
     ///
-    /// During each iteration of the event loop, Tao will aggregate duplicate redraw requests
+    /// During each iteration of the event loop, Winit will aggregate duplicate redraw requests
     /// into a single event, to help avoid duplicating rendering work.
     ///
     /// Mainly of interest to applications with mostly-static graphics that avoid redrawing unless
@@ -374,7 +374,7 @@ pub enum WindowEvent<'a> {
         device_id: DeviceId,
         event: KeyEvent,
 
-        /// If `true`, the event was generated synthetically by tao
+        /// If `true`, the event was generated synthetically by winit
         /// in one of the following circumstances:
         ///
         /// * Synthetic key press events are generated for all keys pressed
@@ -671,7 +671,7 @@ impl DeviceId {
     /// value of this function is that it will always be equal to itself and to future values returned
     /// by this function.  No other guarantees are made. This may be equal to a real `DeviceId`.
     ///
-    /// **Passing this into a tao function will result in undefined behavior.**
+    /// **Passing this into a winit function will result in undefined behavior.**
     pub unsafe fn dummy() -> Self {
         DeviceId(platform_impl::DeviceId::dummy())
     }
@@ -709,7 +709,7 @@ pub enum DeviceEvent {
     },
 
     /// Motion on some analog axis.  This event will be reported for all arbitrary input devices
-    /// that tao supports on this platform, including mouse devices.  If the device is a mouse
+    /// that winit supports on this platform, including mouse devices.  If the device is a mouse
     /// device then this will be reported alongside the MouseMotion event.
     #[non_exhaustive]
     Motion {
@@ -756,7 +756,7 @@ pub struct KeyEvent {
     /// is more important than their label, so they should map to Z, Q, S, and D on an "AZERTY"
     /// layout. (This value is `KeyCode::KeyW` for the Z key on an AZERTY layout.)
     ///
-    /// Note that `Fn` and `FnLock` key events are not guaranteed to be emitted by `tao`. These
+    /// Note that `Fn` and `FnLock` key events are not guaranteed to be emitted by `winit`. These
     /// keys are usually handled at the hardware or OS level.
     pub physical_key: keyboard::KeyCode,
 

@@ -3,7 +3,7 @@
 
 // This example is used by developers to test various window functions.
 
-use tao::{
+use winit::{
     dpi::{LogicalSize, PhysicalSize},
     event::{DeviceEvent, ElementState, Event, KeyEvent, RawKeyEvent, WindowEvent},
     event_loop::{ControlFlow, EventLoop},

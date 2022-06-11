@@ -3,7 +3,7 @@
 
 use std::{thread, time};
 
-use tao::{
+use winit::{
     event::{Event, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     window::WindowBuilder,

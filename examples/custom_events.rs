@@ -4,7 +4,7 @@
 #[allow(clippy::single_match)]
 fn main() {
     env_logger::init();
-    use tao::{
+    use winit::{
         event::{Event, WindowEvent},
         event_loop::{ControlFlow, EventLoop},
         window::WindowBuilder,
@@ -22,7 +22,7 @@ fn main() {
         .build(&event_loop)
         .unwrap();
 
-    // `EventLoopProxy` allows you to dispatch custom events to the main Tao event
+    // `EventLoopProxy` allows you to dispatch custom events to the main Winit event
     // loop from any thread.
     let event_loop_proxy = event_loop.create_proxy();
 

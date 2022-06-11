@@ -36,4 +36,4 @@ mod platform;
     not(target_os = "netbsd"),
     not(target_os = "openbsd"),
 ))]
-compile_error!("The platform you're compiling for is not supported by tao");
+compile_error!("The platform you're compiling for is not supported by winit");

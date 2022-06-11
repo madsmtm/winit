@@ -1,7 +1,7 @@
 // Copyright 2019-2021 Tauri Programme within The Commons Conservancy
 // SPDX-License-Identifier: Apache-2.0
 
-use tao::{
+use winit::{
     event::{DeviceEvent, Event, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     window::WindowBuilder,
@@ -28,7 +28,7 @@ fn main() {
             },
             Event::DeviceEvent { event, .. } => match event {
                 DeviceEvent::MouseWheel { delta, .. } => match delta {
-                    tao::event::MouseScrollDelta::LineDelta(x, y) => {
+                    winit::event::MouseScrollDelta::LineDelta(x, y) => {
                         println!("mouse wheel Line Delta: ({},{})", x, y);
                         let pixels_per_line = 120.0;
                         let mut pos = window.outer_position().unwrap();
@@ -36,7 +36,7 @@ fn main() {
                         pos.y -= (y * pixels_per_line) as i32;
                         window.set_outer_position(pos)
                     }
-                    tao::event::MouseScrollDelta::PixelDelta(p) => {
+                    winit::event::MouseScrollDelta::PixelDelta(p) => {
                         println!("mouse wheel Pixel Delta: ({},{})", p.x, p.y);
                         let mut pos = window.outer_position().unwrap();
                         pos.x -= p.x as i32;

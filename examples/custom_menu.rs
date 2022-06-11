@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #[cfg(target_os = "macos")]
-use tao::platform::macos::{CustomMenuItemExtMacOS, NativeImage};
-use tao::{
+use winit::platform::macos::{CustomMenuItemExtMacOS, NativeImage};
+use winit::{
     accelerator::{Accelerator, SysMods},
     clipboard::Clipboard,
     event::{Event, WindowEvent},
@@ -41,7 +41,7 @@ fn main() {
     // to works correctly
     first_menu.add_native_item(MenuItem::Copy);
     first_menu.add_native_item(MenuItem::About(
-        "tao".into(),
+        "winit".into(),
         AboutMetadata {
             version: Some("1.0.0".into()),
             ..Default::default()
@@ -123,7 +123,7 @@ fn main() {
                 origin: MenuType::MenuBar,
                 ..
             } if menu_id == custom_insert_clipboard.clone().id() => {
-                cliboard.write_text("This is injected from tao!!!")
+                cliboard.write_text("This is injected from winit!!!")
             }
             Event::MenuEvent {
                 menu_id,

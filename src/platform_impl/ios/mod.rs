@@ -22,7 +22,7 @@
 //!
 //! ```rust, ignore
 //! #[no_mangle]
-//! pub extern fn start_tao_app() {
+//! pub extern fn start_winit_app() {
 //!     start_inner()
 //! }
 //!
@@ -31,13 +31,13 @@
 //! }
 //! ```
 //!
-//! Compile project and then drag resulting .a into Xcode project. Add tao.h to xcode.
+//! Compile project and then drag resulting .a into Xcode project. Add winit.h to xcode.
 //!
 //! ```ignore
-//! void start_tao_app();
+//! void start_winit_app();
 //! ```
 //!
-//! Use start_tao_app inside your xcode's main function.
+//! Use start_winit_app inside your xcode's main function.
 //!
 //!
 //! # App lifecycle and events
@@ -47,7 +47,7 @@
 //! [app lifecycle](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/).
 //!
 //!
-//! This is how those event are represented in tao:
+//! This is how those event are represented in winit:
 //!
 //!  - applicationDidBecomeActive is Resumed
 //!  - applicationWillResignActive is Suspended

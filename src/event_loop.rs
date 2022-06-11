@@ -37,7 +37,7 @@ pub struct EventLoop<T: 'static> {
 
 /// Target that associates windows with an `EventLoop`.
 ///
-/// This type exists to allow you to create new windows while Tao executes
+/// This type exists to allow you to create new windows while Winit executes
 /// your callback. `EventLoop` will coerce into this type (`impl<T> Deref for
 /// EventLoop<T>`), so functions that take this as a parameter can also take
 /// `&EventLoop`.
@@ -154,7 +154,7 @@ impl<T> EventLoop<T> {
         }
     }
 
-    /// Hijacks the calling thread and initializes the tao event loop with the provided
+    /// Hijacks the calling thread and initializes the winit event loop with the provided
     /// closure. Since the closure is `'static`, it must be a `move` closure if it needs to
     /// access any data from the calling context.
     ///

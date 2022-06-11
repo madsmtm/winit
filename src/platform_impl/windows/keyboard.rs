@@ -53,8 +53,8 @@ lazy_static! {
 
 /// Stores information required to make `KeyEvent`s.
 ///
-/// A single Tao `KeyEvent` contains information which the Windows API passes to the application
-/// in multiple window messages. In other words: a Tao `KeyEvent` cannot be built from a single
+/// A single Winit `KeyEvent` contains information which the Windows API passes to the application
+/// in multiple window messages. In other words: a Winit `KeyEvent` cannot be built from a single
 /// window message. Therefore, this type keeps track of certain information from previous events so
 /// that a `KeyEvent` can be constructed when the last event related to a keypress is received.
 ///

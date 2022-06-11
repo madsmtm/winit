@@ -1,7 +1,7 @@
 // Copyright 2019-2021 Tauri Programme within The Commons Conservancy
 // SPDX-License-Identifier: Apache-2.0
 
-//! Tao is a cross-platform application window creation and event loop management library.
+//! Winit is a cross-platform application window creation and event loop management library.
 //!
 //! # Building windows
 //!
@@ -9,7 +9,7 @@
 //! [`EventLoop::new()`] function.
 //!
 //! ```no_run
-//! use tao::event_loop::EventLoop;
+//! use winit::event_loop::EventLoop;
 //! let event_loop = EventLoop::new();
 //! ```
 //!
@@ -37,7 +37,7 @@
 //! [`ControlFlow`]`::`[`ExitWithCode`] (which [`ControlFlow`]`::`[`Exit`] aliases to), at which
 //! point [`Event`]`::`[`LoopDestroyed`] is emitted and the entire program terminates.
 //!
-//! Tao no longer uses a `EventLoop::poll_events() -> impl Iterator<Event>`-based event loop
+//! Winit no longer uses a `EventLoop::poll_events() -> impl Iterator<Event>`-based event loop
 //! model, since that can't be implemented properly on some platforms (e.g web, iOS) and works poorly on
 //! most other platforms. However, this model can be re-implemented to an extent with
 //! [`EventLoopExtRunReturn::run_return`]. See that method's documentation for more reasons about why
@@ -45,7 +45,7 @@
 //!
 //!
 //! ```no_run
-//! use tao::{
+//! use winit::{
 //!     event::{Event, WindowEvent},
 //!     event_loop::{ControlFlow, EventLoop},
 //!     window::WindowBuilder,
@@ -100,7 +100,7 @@
 //!
 //! # Drawing on the window
 //!
-//! Tao doesn't directly provide any methods for drawing on a [`Window`]. However it allows you to
+//! Winit doesn't directly provide any methods for drawing on a [`Window`]. However it allows you to
 //! retrieve the raw handle of the window (see the [`platform`] module and/or the
 //! [`raw_window_handle`] method), which in turn allows you to create an
 //! OpenGL/Vulkan/DirectX/Metal/etc. context that can be used to render graphics.

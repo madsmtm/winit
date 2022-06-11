@@ -32,13 +32,13 @@ use crate::{
 
 macro_rules! bug {
     ($($msg:tt)*) => {
-        panic!("tao iOS bug, file an issue: {}", format!($($msg)*))
+        panic!("winit iOS bug, file an issue: {}", format!($($msg)*))
     };
 }
 
 macro_rules! bug_assert {
     ($test:expr, $($msg:tt)*) => {
-        assert!($test, "tao iOS bug, file an issue: {}", format!($($msg)*))
+        assert!($test, "winit iOS bug, file an issue: {}", format!($($msg)*))
     };
 }
 
@@ -141,7 +141,7 @@ impl AppState {
 
         if cfg!(debug_assertions) {
             assert_main_thread!(
-                "bug in tao: `AppState::get_mut()` can only be called on the main thread"
+                "bug in winit: `AppState::get_mut()` can only be called on the main thread"
             );
         }
         let mut guard = APP_STATE.borrow_mut();
@@ -1029,7 +1029,7 @@ pub fn os_capabilities() -> OSCapabilities {
                     process_info,
                     respondsToSelector: sel!(operatingSystemVersion)
                 ];
-                // tao requires atleast iOS 8 because no one has put the time into supporting earlier os versions.
+                // winit requires atleast iOS 8 because no one has put the time into supporting earlier os versions.
                 // Older iOS versions are increasingly difficult to test. For example, Xcode 11 does not support
                 // debugging on devices with an iOS version of less than 8. Another example, in order to use an iOS
                 // simulator older than iOS 8, you must download an older version of Xcode (<9), and at least Xcode 7
@@ -1038,7 +1038,7 @@ pub fn os_capabilities() -> OSCapabilities {
                 // The minimum required iOS version is likely to grow in the future.
                 assert!(
                     atleast_ios_8 == YES,
-                    "`tao` requires iOS version 8 or greater"
+                    "`winit` requires iOS version 8 or greater"
                 );
                 msg_send![process_info, operatingSystemVersion]
             };

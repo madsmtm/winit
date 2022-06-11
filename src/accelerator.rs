@@ -8,8 +8,8 @@
 //! # Examples
 //! They can be created directly
 //! ```
-//! # use tao::accelerator::{Accelerator, AcceleratorId, SysMods, RawMods};
-//! # use tao::keyboard::{ModifiersState, KeyCode};
+//! # use winit::accelerator::{Accelerator, AcceleratorId, SysMods, RawMods};
+//! # use winit::keyboard::{ModifiersState, KeyCode};
 //! #
 //! let accelerator = Accelerator::new(SysMods::Shift, KeyCode::KeyQ);
 //! let accelerator_with_raw_mods = Accelerator::new(RawMods::Shift, KeyCode::KeyQ);
@@ -24,8 +24,8 @@
 //! have to be listed before the non-modifier key, `shift+alt+q` is legal,
 //! whereas `shift+q+alt` is not.
 //! ```
-//! # use tao::accelerator::{Accelerator, AcceleratorId, RawMods};
-//! # use tao::keyboard::{ModifiersState, KeyCode};
+//! # use winit::accelerator::{Accelerator, AcceleratorId, RawMods};
+//! # use winit::keyboard::{ModifiersState, KeyCode};
 //! #
 //! let accelerator: Accelerator = "shift+alt+q".parse().unwrap();
 //! # assert_eq!(

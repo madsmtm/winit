@@ -3,7 +3,7 @@
 
 use std::{thread, time};
 
-use tao::{
+use winit::{
     event::{ElementState, Event, KeyEvent, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     keyboard::Key,
@@ -42,7 +42,7 @@ fn main() {
     let mut close_requested = false;
 
     event_loop.run(move |event, _, control_flow| {
-        use tao::event::StartCause;
+        use winit::event::StartCause;
         println!("{:?}", event);
         match event {
             Event::NewEvents(start_cause) => {

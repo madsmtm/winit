@@ -25,7 +25,7 @@ use super::{
     app_state::AppState, event::EventWrapper, util::ns_string_to_rust, window::get_window_id,
 };
 
-static BLOCK_PTR: &str = "taoMenuItemBlockPtr";
+static BLOCK_PTR: &str = "winitMenuItemBlockPtr";
 
 #[derive(Debug, Clone)]
 pub struct Menu {
@@ -405,7 +405,7 @@ fn make_menu_item_class() -> *const Class {
 
     INIT.call_once(|| unsafe {
         let superclass = class!(NSMenuItem);
-        let mut decl = ClassDecl::new("TaoMenuItem", superclass).unwrap();
+        let mut decl = ClassDecl::new("WinitMenuItem", superclass).unwrap();
         decl.add_ivar::<usize>(BLOCK_PTR);
 
         decl.add_method(

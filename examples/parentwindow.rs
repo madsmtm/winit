@@ -5,10 +5,10 @@
 fn main() {
     use std::collections::HashMap;
     #[cfg(target_os = "macos")]
-    use tao::platform::macos::{WindowBuilderExtMacOS, WindowExtMacOS};
+    use winit::platform::macos::{WindowBuilderExtMacOS, WindowExtMacOS};
     #[cfg(target_os = "windows")]
-    use tao::platform::windows::{WindowBuilderExtWindows, WindowExtWindows};
-    use tao::{
+    use winit::platform::windows::{WindowBuilderExtWindows, WindowExtWindows};
+    use winit::{
         dpi::LogicalSize,
         event::{Event, StartCause, WindowEvent},
         event_loop::{ControlFlow, EventLoop},
@@ -39,7 +39,7 @@ fn main() {
         *control_flow = ControlFlow::Wait;
 
         match event {
-            Event::NewEvents(StartCause::Init) => println!("TAO application started!"),
+            Event::NewEvents(StartCause::Init) => println!("WINIT application started!"),
             Event::WindowEvent {
                 event, window_id, ..
             } if event == WindowEvent::CloseRequested => {

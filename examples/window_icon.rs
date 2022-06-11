@@ -4,7 +4,7 @@
 extern crate image;
 use std::path::Path;
 
-use tao::{
+use winit::{
     event::Event,
     event_loop::{ControlFlow, EventLoop},
     window::{Icon, WindowBuilder},
@@ -16,7 +16,7 @@ fn main() {
 
     // You'll have to choose an icon size at your own discretion. On Linux, the icon should be
     // provided in whatever size it was naturally drawn; that is, don’t scale the image before passing
-    // it to Tao. But on Windows, you will have to account for screen scaling. Here we use 32px,
+    // it to Winit. But on Windows, you will have to account for screen scaling. Here we use 32px,
     // since it seems to work well enough in most cases. Be careful about going too high, or
     // you'll be bitten by the low-quality downscaling built into the WM.
     let path = concat!(env!("CARGO_MANIFEST_DIR"), "/examples/icon.png");
@@ -37,7 +37,7 @@ fn main() {
         *control_flow = ControlFlow::Wait;
 
         if let Event::WindowEvent { event, .. } = event {
-            use tao::event::WindowEvent::*;
+            use winit::event::WindowEvent::*;
             match event {
                 CloseRequested => *control_flow = ControlFlow::Exit,
                 DroppedFile(path) => {

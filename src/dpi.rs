@@ -38,13 +38,13 @@
 //!
 //! ### Position and Size types
 //!
-//! Tao's `Physical(Position|Size)` types correspond with the actual pixels on the device, and the
+//! Winit's `Physical(Position|Size)` types correspond with the actual pixels on the device, and the
 //! `Logical(Position|Size)` types correspond to the physical pixels divided by the scale factor.
-//! All of Tao's functions return physical types, but can take either logical or physical
+//! All of Winit's functions return physical types, but can take either logical or physical
 //! coordinates as input, allowing you to use the most convenient coordinate system for your
 //! particular application.
 //!
-//! Tao's position and size types types are generic over their exact pixel type, `P`, to allow the
+//! Winit's position and size types types are generic over their exact pixel type, `P`, to allow the
 //! API to have integer precision where appropriate (e.g. most window manipulation functions) and
 //! floating precision when necessary (e.g. logical sizes for fractional scale factors and touch
 //! input). If `P` is a floating-point type, please do not cast the values with `as {int}`. Doing so
@@ -55,7 +55,7 @@
 //!
 //! ### Events
 //!
-//! Tao will dispatch a [`ScaleFactorChanged`](crate::event::WindowEvent::ScaleFactorChanged)
+//! Winit will dispatch a [`ScaleFactorChanged`](crate::event::WindowEvent::ScaleFactorChanged)
 //! event whenever a window's scale factor has changed. This can happen if the user drags their
 //! window from a standard-resolution monitor to a high-DPI monitor, or if the user changes their
 //! DPI settings. This gives you a chance to rescale your application's UI elements and adjust how
@@ -141,7 +141,7 @@ impl Pixel for f64 {
 /// Checks that the scale factor is a normal positive `f64`.
 ///
 /// All functions that take a scale factor assert that this will return `true`. If you're sourcing scale factors from
-/// anywhere other than tao, it's recommended to validate them using this function before passing them to tao;
+/// anywhere other than winit, it's recommended to validate them using this function before passing them to winit;
 /// otherwise, you risk panics.
 #[inline]
 pub fn validate_scale_factor(scale_factor: f64) -> bool {

@@ -4,16 +4,16 @@
 #[cfg(any(target_os = "windows", target_os = "macos"))]
 #[allow(clippy::single_match)]
 fn main() {
-    use tao::{
+    use winit::{
         event::{Event, WindowEvent},
         event_loop::{ControlFlow, EventLoop},
         window::WindowBuilder,
     };
 
     #[cfg(any(target_os = "macos"))]
-    use tao::platform::macos::WindowExtMacOS;
+    use winit::platform::macos::WindowExtMacOS;
     #[cfg(target_os = "windows")]
-    use tao::platform::windows::WindowExtWindows;
+    use winit::platform::windows::WindowExtWindows;
 
     env_logger::init();
     let event_loop = EventLoop::new();

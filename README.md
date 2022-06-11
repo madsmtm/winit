@@ -1,6 +1,6 @@
-<img src=".github/splash.png" alt="TAO - Window Creation Library" />
+<img src=".github/splash.png" alt="WINIT - Window Creation Library" />
 
-[![](https://img.shields.io/crates/v/tao?style=flat-square)](https://crates.io/crates/tao) [![](https://img.shields.io/docsrs/tao?style=flat-square)](https://docs.rs/tao/) ![](https://img.shields.io/crates/l/tao?style=flat-square)
+[![](https://img.shields.io/crates/v/winit?style=flat-square)](https://crates.io/crates/winit) [![](https://img.shields.io/docsrs/winit?style=flat-square)](https://docs.rs/winit/) ![](https://img.shields.io/crates/l/winit?style=flat-square)
 
 [![Chat Server](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/SpmNs4S)
 [![devto](https://img.shields.io/badge/blog-dev.to-black.svg)](https://dev.to/tauri)
@@ -14,7 +14,7 @@ Windows, macOS, Linux, iOS and Android. Built for you, maintained for Tauri.
 
 ### Cargo Features
 
-Tao provides the following features, which can be enabled in your `Cargo.toml` file:
+Winit provides the following features, which can be enabled in your `Cargo.toml` file:
 * `serde`: Enables serialization/deserialization of certain types with [Serde](https://crates.io/crates/serde).
 * `tray`: Enables system tray and more menu item variants on **Linux**.
   This feature requires either `libayatana-appindicator` or `libappindicator` package installed.
@@ -78,11 +78,11 @@ sudo apt install libayatana-appindicator3-dev
 
 #### MacOS
 
-To ensure compatibility with older MacOS systems, tao links to
+To ensure compatibility with older MacOS systems, winit links to
 CGDisplayCreateUUIDFromDisplayID through the CoreGraphics framework.
 However, under certain setups this function is only available to be linked
-through the newer ColorSync framework. So, tao provides the
-`TAO_LINK_COLORSYNC` environment variable which can be set to `1` or `true`
+through the newer ColorSync framework. So, winit provides the
+`WINIT_LINK_COLORSYNC` environment variable which can be set to `1` or `true`
 while compiling to enable linking via ColorSync.
 
 ### Acknowledgement

@@ -4,7 +4,7 @@
 #[cfg(any(target_os = "windows", target_os = "linux", target_os = "macos"))]
 fn main() {
     use std::str::FromStr;
-    use tao::{
+    use winit::{
         accelerator::{Accelerator, AcceleratorId, RawMods, SysMods},
         event::{Event, WindowEvent},
         event_loop::{ControlFlow, EventLoop},

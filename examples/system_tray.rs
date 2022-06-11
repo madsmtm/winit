@@ -7,8 +7,8 @@
 #[cfg(any(feature = "tray", all(target_os = "linux", feature = "ayatana")))]
 fn main() {
     #[cfg(target_os = "macos")]
-    use tao::platform::macos::{CustomMenuItemExtMacOS, NativeImage, SystemTrayBuilderExtMacOS};
-    use tao::{
+    use winit::platform::macos::{CustomMenuItemExtMacOS, NativeImage, SystemTrayBuilderExtMacOS};
+    use winit::{
         event::Event,
         event_loop::{ControlFlow, EventLoop},
         menu::{ContextMenu as Menu, MenuItemAttributes, MenuType},
@@ -23,7 +23,7 @@ fn main() {
 
     // You'll have to choose an icon size at your own discretion. On Linux, the icon should be
     // provided in whatever size it was naturally drawn; that is, don’t scale the image before passing
-    // it to Tao. But on Windows, you will have to account for screen scaling. Here we use 32px,
+    // it to Winit. But on Windows, you will have to account for screen scaling. Here we use 32px,
     // since it seems to work well enough in most cases. Be careful about going too high, or
     // you'll be bitten by the low-quality downscaling built into the WM.
     let path = concat!(env!("CARGO_MANIFEST_DIR"), "/examples/icon.png");
@@ -57,7 +57,7 @@ fn main() {
 
 #[cfg(any(target_os = "windows", target_os = "linux", target_os = "macos"))]
 #[cfg(any(feature = "tray", all(target_os = "linux", feature = "ayatana")))]
-fn load_icon(path: &std::path::Path) -> tao::system_tray::Icon {
+fn load_icon(path: &std::path::Path) -> winit::system_tray::Icon {
     let (icon_rgba, icon_width, icon_height) = {
         let image = image::open(path)
             .expect("Failed to open icon path")
@@ -66,7 +66,7 @@ fn load_icon(path: &std::path::Path) -> tao::system_tray::Icon {
         let rgba = image.into_raw();
         (rgba, width, height)
     };
-    tao::system_tray::Icon::from_rgba(icon_rgba, icon_width, icon_height)
+    winit::system_tray::Icon::from_rgba(icon_rgba, icon_width, icon_height)
         .expect("Failed to open icon")
 }
 

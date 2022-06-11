@@ -1,9 +1,9 @@
 // Copyright 2019-2021 Tauri Programme within The Commons Conservancy
 // SPDX-License-Identifier: Apache-2.0
 
-extern crate tao;
+extern crate winit;
 
-use tao::{
+use winit::{
     event::{Event, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     keyboard::Key,

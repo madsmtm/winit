@@ -4,7 +4,7 @@
 #![cfg(feature = "serde")]
 
 use serde::{Deserialize, Serialize};
-use tao::{
+use winit::{
     dpi::{LogicalPosition, LogicalSize, PhysicalPosition, PhysicalSize},
     event::{ElementState, MouseButton, MouseScrollDelta, TouchPhase},
     keyboard::{Key, KeyCode, KeyLocation, ModifiersState},

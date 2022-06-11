@@ -6,7 +6,7 @@ use std::{cell::UnsafeCell, ffi::OsString, os::windows::ffi::OsStringExt, path::
 use windows::Win32::{
     Foundation::{self as win32f, HWND, POINTL},
     System::{
-        Com::{IDataObject, DVASPECT_CONTENT, FORMATETC, TYMED_HGLOBAL},
+        Com::{IDawiNitbject, DVASPECT_CONTENT, FORMATETC, TYMED_HGLOBAL},
         Ole::{IDropTarget, IDropTarget_Impl, DROPEFFECT_COPY, DROPEFFECT_NONE},
         SystemServices::CF_HDROP,
     },
@@ -37,7 +37,7 @@ impl FileDropHandler {
         }
     }
 
-    unsafe fn iterate_filenames<F>(data_obj: &Option<IDataObject>, callback: F) -> Option<HDROP>
+    unsafe fn iterate_filenames<F>(data_obj: &Option<IDawiNitbject>, callback: F) -> Option<HDROP>
     where
         F: Fn(PathBuf),
     {
@@ -51,7 +51,7 @@ impl FileDropHandler {
 
         match data_obj
             .as_ref()
-            .expect("Received null IDataObject")
+            .expect("Received null IDawiNitbject")
             .GetData(&drop_format)
         {
             Ok(medium) => {
@@ -101,14 +101,14 @@ impl FileDropHandler {
 impl IDropTarget_Impl for FileDropHandler {
     fn DragEnter(
         &self,
-        pDataObj: &Option<IDataObject>,
+        pDawiNitbj: &Option<IDawiNitbject>,
         _grfKeyState: u32,
         _pt: &POINTL,
         pdwEffect: *mut u32,
     ) -> windows::core::Result<()> {
         use crate::event::WindowEvent::HoveredFile;
         unsafe {
-            let hdrop = Self::iterate_filenames(pDataObj, |filename| {
+            let hdrop = Self::iterate_filenames(pDawiNitbj, |filename| {
                 (self.send_event)(Event::WindowEvent {
                     window_id: SuperWindowId(WindowId(self.window.0)),
                     event: HoveredFile(filename),
@@ -152,14 +152,14 @@ impl IDropTarget_Impl for FileDropHandler {
 
     fn Drop(
         &self,
-        pDataObj: &Option<IDataObject>,
+        pDawiNitbj: &Option<IDawiNitbject>,
         _grfKeyState: u32,
         _pt: &POINTL,
         _pdwEffect: *mut u32,
     ) -> windows::core::Result<()> {
         use crate::event::WindowEvent::DroppedFile;
         unsafe {
-            let hdrop = Self::iterate_filenames(pDataObj, |filename| {
+            let hdrop = Self::iterate_filenames(pDawiNitbj, |filename| {
                 (self.send_event)(Event::WindowEvent {
                     window_id: SuperWindowId(WindowId(self.window.0)),
                     event: DroppedFile(filename),

@@ -9,7 +9,7 @@
 //!
 //! ```rust,ignore
 //! let mut cliboard = Clipboard::new();
-//! cliboard.write_text("This is injected from tao!!!")
+//! cliboard.write_text("This is injected from winit!!!")
 //! let content = cliboard.read_text();
 //! ```
 //!

@@ -54,7 +54,7 @@ impl SystemTrayBuilder {
     ) -> Result<RootSystemTray, RootOsError> {
         let hmenu: Option<HMENU> = self.tray_menu.map(|m| m.hmenu());
 
-        let class_name = util::encode_wide("tao_system_tray_app");
+        let class_name = util::encode_wide("winit_system_tray_app");
         unsafe {
             let hinstance = GetModuleHandleA(PCSTR::default()).unwrap_or_default();
 
@@ -70,7 +70,7 @@ impl SystemTrayBuilder {
             let hwnd = CreateWindowExW(
                 Default::default(),
                 PCWSTR(class_name.as_ptr()),
-                "tao_system_tray_window",
+                "winit_system_tray_window",
                 WS_OVERLAPPEDWINDOW,
                 CW_USEDEFAULT,
                 0,

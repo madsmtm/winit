@@ -166,7 +166,7 @@ fn make_tray_class() -> *const Class {
 
     INIT.call_once(|| unsafe {
         let superclass = class!(NSObject);
-        let mut decl = ClassDecl::new("TaoTrayHandler", superclass).unwrap();
+        let mut decl = ClassDecl::new("WinitTrayHandler", superclass).unwrap();
         decl.add_ivar::<id>("status_bar");
         decl.add_ivar::<id>("menu");
         decl.add_method(

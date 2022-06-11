@@ -6,7 +6,7 @@
 fn main() {
     use std::{collections::HashMap, sync::mpsc, thread, time::Duration};
 
-    use tao::{
+    use winit::{
         dpi::{PhysicalPosition, PhysicalSize, Position, Size},
         event::{ElementState, Event, KeyEvent, WindowEvent},
         event_loop::{ControlFlow, EventLoop},

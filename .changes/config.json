@@ -1,5 +1,5 @@
 {
-  "gitSiteUrl": "https://github.com/tauri-apps/tao/",
+  "gitSiteUrl": "https://github.com/tauri-apps/winit/",
   "timeout": 3600000,
   "additionalBumpTypes": ["housekeeping"],
   "pkgManagers": {
@@ -78,7 +78,7 @@
     }
   },
   "packages": {
-    "tao": {
+    "winit": {
       "path": "./",
       "manager": "rust"
     }

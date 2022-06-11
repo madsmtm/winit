@@ -1,7 +1,7 @@
 // Copyright 2019-2021 Tauri Programme within The Commons Conservancy
 // SPDX-License-Identifier: Apache-2.0
 
-use tao::{event_loop::EventLoop, window::WindowBuilder};
+use winit::{event_loop::EventLoop, window::WindowBuilder};
 
 fn main() {
     env_logger::init();

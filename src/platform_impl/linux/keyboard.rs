@@ -135,7 +135,7 @@ pub(crate) fn get_modifiers(key: EventKey) -> ModifiersState {
     let keyval = key.keyval();
     // unicode value
     let unicode = keyval.to_unicode();
-    // translate to tao::keyboard::Key
+    // translate to winit::keyboard::Key
     let key_from_code = raw_key_to_key(keyval).unwrap_or_else(|| {
         if let Some(key) = unicode {
             if key >= ' ' && key != '\x7f' {

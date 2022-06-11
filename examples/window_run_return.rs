@@ -7,7 +7,7 @@
 fn main() {
     use std::{thread::sleep, time::Duration};
 
-    use tao::{
+    use winit::{
         event::{Event, WindowEvent},
         event_loop::{ControlFlow, EventLoop},
         platform::run_return::EventLoopExtRunReturn,

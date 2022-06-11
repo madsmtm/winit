@@ -4,7 +4,7 @@
 use instant::Instant;
 use std::time::Duration;
 
-use tao::{
+use winit::{
     event::{Event, StartCause, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     window::WindowBuilder,

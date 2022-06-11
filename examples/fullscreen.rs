@@ -3,7 +3,7 @@
 
 use std::io::{stdin, stdout, Write};
 
-use tao::{
+use winit::{
     event::{ElementState, Event, KeyEvent, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     keyboard::Key,
