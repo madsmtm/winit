@@ -12,4 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check commit length
         run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REF
           git log $GITHUB_SHA..$GITHUB_REF
+          git log $GITHUB_REF..$GITHUB_SHA
