@@ -2,7 +2,7 @@ name: Check commit messages
 
 on:
   # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request_target
-  pull_request_target:
+  pull_request:
 
 
 jobs:
