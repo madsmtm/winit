@@ -95,6 +95,9 @@ extern_methods!(
         #[method(setLayerContentsRedrawPolicy:)]
         pub fn setLayerContentsRedrawPolicy(&self, layer_contents_redraw_policy: isize);
 
+        #[method(needsDisplay)]
+        pub fn needsDisplay(&self) -> bool;
+
         #[method(setNeedsDisplay:)]
         pub fn setNeedsDisplay(&self, needs_display: bool);
     }

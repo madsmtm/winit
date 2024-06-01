@@ -619,15 +619,17 @@ impl WinitWindow {
 
     pub fn request_redraw(&self) {
         dbg!(self.view().layerContentsRedrawPolicy());
+        dbg!(self.view().needsDisplay());
         self.view().setNeedsDisplay(true);
-        // let mut shared_state = self.lock_shared_state("request_redraw");
-        // shared_state.pending_redraw = true;
-        // drop(shared_state);
+        dbg!(self.view().needsDisplay());
+        let mut shared_state = self.lock_shared_state("request_redraw");
+        shared_state.pending_redraw = true;
+        drop(shared_state);
         unsafe {
             let rl = CFRunLoopGetMain();
             CFRunLoopWakeUp(rl);
         }
-        // ]self.update();
+        // self.update();
     }
 
     #[inline]

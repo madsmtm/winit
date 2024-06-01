@@ -30,12 +30,11 @@ fn main() -> Result<(), impl std::error::Error> {
                     // Notify the windowing system that we'll be presenting to the window.
                     window.pre_present_notify();
                     fill::fill_window(&window);
+                    window.request_redraw();
                 }
                 _ => (),
             },
-            Event::AboutToWait => {
-                window.request_redraw();
-            }
+            Event::AboutToWait => {}
 
             _ => (),
         }

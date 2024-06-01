@@ -254,11 +254,16 @@ declare_class!(
         #[method(drawRect:)]
         fn draw_rect(&self, rect: NSRect) {
             trace_scope!("drawRect:");
+            dbg!(self.needsDisplay());
 
             // It's a workaround for https://github.com/rust-windowing/winit/issues/2640, don't replace with `self.window_id()`.
             if let Some(window) = self._ns_window.load() {
                 AppState::handle_redraw(WindowId(window.id()));
             }
+
+            dbg!(self.needsDisplay());
+            self.setNeedsDisplay(true);
+            dbg!(self.needsDisplay());
 
             // Don't call super
         }

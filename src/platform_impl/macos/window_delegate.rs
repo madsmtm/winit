@@ -113,7 +113,10 @@ declare_class!(
             shared_state.pending_redraw = false;
             drop(shared_state);
             if pending_redraw {
-                AppState::handle_redraw(WindowId(self.window.id()));
+                dbg!(self.window.view().needsDisplay());
+                self.window.view().setNeedsDisplay(true);
+                dbg!(self.window.view().needsDisplay());
+                // AppState::handle_redraw(WindowId(self.window.id()));
             }
         }
 
