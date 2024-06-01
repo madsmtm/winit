@@ -31,6 +31,8 @@ use crate::{
         WindowAttributes, WindowButtons, WindowId as RootWindowId, WindowLevel,
     },
 };
+use core_foundation::runloop::CFRunLoopGetMain;
+use core_foundation::runloop::CFRunLoopWakeUp;
 use core_graphics::display::{CGDisplay, CGPoint};
 use icrate::Foundation::{
     CGFloat, MainThreadBound, MainThreadMarker, NSArray, NSCopying, NSInteger, NSObject, NSPoint,
@@ -241,6 +243,8 @@ pub struct SharedState {
     pub(crate) option_as_alt: OptionAsAlt,
 
     decorations: bool,
+
+    pub pending_redraw: bool,
 }
 
 impl SharedState {
@@ -611,7 +615,14 @@ impl WinitWindow {
     }
 
     pub fn request_redraw(&self) {
-        AppState::queue_redraw(RootWindowId(self.id()));
+        let mut shared_state = self.lock_shared_state("request_redraw");
+        shared_state.pending_redraw = true;
+        drop(shared_state);
+        unsafe {
+            let rl = CFRunLoopGetMain();
+            CFRunLoopWakeUp(rl);
+        }
+        // self.update();
     }
 
     #[inline]

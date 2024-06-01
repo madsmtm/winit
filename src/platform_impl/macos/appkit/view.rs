@@ -88,6 +88,9 @@ extern_methods!(
 
         #[method(setHidden:)]
         pub fn setHidden(&self, hidden: bool);
+
+        #[method(setLayerContentsRedrawPolicy:)]
+        pub unsafe fn setLayerContentsRedrawPolicy(&self, layer_contents_redraw_policy: isize);
     }
 );
 

@@ -39,6 +39,9 @@ extern_methods!(
         #[method(windowNumber)]
         pub(crate) fn windowNumber(&self) -> NSInteger;
 
+        #[method(update)]
+        pub(crate) fn update(&self);
+
         #[method(backingScaleFactor)]
         pub(crate) fn backingScaleFactor(&self) -> CGFloat;
 

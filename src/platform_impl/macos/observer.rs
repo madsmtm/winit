@@ -52,9 +52,9 @@ extern "C" fn control_flow_begin_handler(
             #[allow(non_upper_case_globals)]
             match activity {
                 kCFRunLoopAfterWaiting => {
-                    //trace!("Triggered `CFRunLoopAfterWaiting`");
+                    trace!("Triggered `CFRunLoopAfterWaiting`");
                     AppState::wakeup(panic_info);
-                    //trace!("Completed `CFRunLoopAfterWaiting`");
+                    trace!("Completed `CFRunLoopAfterWaiting`");
                 }
                 _ => unreachable!(),
             }
@@ -74,9 +74,9 @@ extern "C" fn control_flow_end_handler(
             #[allow(non_upper_case_globals)]
             match activity {
                 kCFRunLoopBeforeWaiting => {
-                    //trace!("Triggered `CFRunLoopBeforeWaiting`");
+                    trace!("Triggered `CFRunLoopBeforeWaiting`");
                     AppState::cleared(panic_info);
-                    //trace!("Completed `CFRunLoopBeforeWaiting`");
+                    trace!("Completed `CFRunLoopBeforeWaiting`");
                 }
                 kCFRunLoopExit => (), //unimplemented!(), // not expected to ever happen
                 _ => unreachable!(),

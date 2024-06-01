@@ -103,6 +103,20 @@ declare_class!(
 
     // NSWindowDelegate + NSDraggingDestination protocols
     unsafe impl WinitWindowDelegate {
+        #[method(windowDidUpdate:)]
+        fn window_did_update(&self, _notification: &NSObject) {
+            // Happens on every iteration of the event loop, so would be very verbose to trace
+            // trace_scope!("windowDidUpdate:");
+
+            let mut shared_state = self.window.lock_shared_state("window_did_update");
+            let pending_redraw = shared_state.pending_redraw;
+            shared_state.pending_redraw = false;
+            drop(shared_state);
+            if pending_redraw {
+                AppState::handle_redraw(WindowId(self.window.id()));
+            }
+        }
+
         #[method(windowShouldClose:)]
         fn window_should_close(&self, _: Option<&AnyObject>) -> bool {
             trace_scope!("windowShouldClose:");

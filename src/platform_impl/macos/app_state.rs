@@ -572,6 +572,8 @@ impl AppState {
             if HANDLER.should_stop_app_on_redraw_requested() {
                 AppState::stop();
             }
+        } else {
+            eprintln!("skipped redraw");
         }
     }
 
