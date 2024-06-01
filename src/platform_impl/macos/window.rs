@@ -482,6 +482,9 @@ impl WinitWindow {
         // always the default system value in favour of the user's code
         view.setWantsBestResolutionOpenGLSurface(!pl_attrs.disallow_hidpi);
 
+        dbg!(view.layerContentsRedrawPolicy());
+        view.setLayerContentsRedrawPolicy(2); // NSViewLayerContentsRedrawDuringViewResize
+
         // On Mojave, views automatically become layer-backed shortly after being added to
         // a window. Changing the layer-backedness of a view breaks the association between
         // the view and its associated OpenGL context. To work around this, on Mojave we
@@ -615,14 +618,16 @@ impl WinitWindow {
     }
 
     pub fn request_redraw(&self) {
-        let mut shared_state = self.lock_shared_state("request_redraw");
-        shared_state.pending_redraw = true;
-        drop(shared_state);
+        dbg!(self.view().layerContentsRedrawPolicy());
+        self.view().setNeedsDisplay(true);
+        // let mut shared_state = self.lock_shared_state("request_redraw");
+        // shared_state.pending_redraw = true;
+        // drop(shared_state);
         unsafe {
             let rl = CFRunLoopGetMain();
             CFRunLoopWakeUp(rl);
         }
-        // self.update();
+        // ]self.update();
     }
 
     #[inline]

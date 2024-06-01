@@ -236,6 +236,21 @@ declare_class!(
             self.queue_event(WindowEvent::Resized(size));
         }
 
+        #[method(updateLayer)]
+        fn update_layer(&self) {
+            trace_scope!("updateLayer");
+
+            // It's a workaround for https://github.com/rust-windowing/winit/issues/2640, don't replace with `self.window_id()`.
+            if let Some(window) = self._ns_window.load() {
+                AppState::handle_redraw(WindowId(window.id()));
+            }
+        }
+
+        #[method(wantsUpdateLayer)]
+        fn wants_update_layer(&self) -> bool {
+            true
+        }
+
         #[method(drawRect:)]
         fn draw_rect(&self, rect: NSRect) {
             trace_scope!("drawRect:");
