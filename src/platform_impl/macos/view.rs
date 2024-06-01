@@ -248,7 +248,7 @@ declare_class!(
 
         #[method(wantsUpdateLayer)]
         fn wants_update_layer(&self) -> bool {
-            true
+            false
         }
 
         #[method(drawRect:)]
@@ -260,10 +260,7 @@ declare_class!(
                 AppState::handle_redraw(WindowId(window.id()));
             }
 
-            #[allow(clippy::let_unit_value)]
-            unsafe {
-                let _: () = msg_send![super(self), drawRect: rect];
-            }
+            // Don't call super
         }
 
         #[method(acceptsFirstResponder)]
