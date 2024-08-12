@@ -345,9 +345,11 @@ impl Handler {
 
             let physical_size = *new_inner_size.lock().unwrap();
             drop(new_inner_size);
-            let logical_size = physical_size.to_logical(scale_factor);
-            let size = NSSize::new(logical_size.width, logical_size.height);
-            window.setContentSize(size);
+            if suggested_size != physical_size {
+                let logical_size = physical_size.to_logical(scale_factor);
+                let size = NSSize::new(logical_size.width, logical_size.height);
+                window.setContentSize(size);
+            }
 
             let resized_event = Event::WindowEvent {
                 window_id: WindowId(window.id()),
@@ -579,6 +581,7 @@ impl AppState {
 
     pub fn handle_resize(window_id: WindowId, size: PhysicalSize<u32>) {
         if !HANDLER.in_callback.swap(true, Ordering::AcqRel) {
+            eprintln!("resize");
             HANDLER.handle_nonuser_event(Event::WindowEvent {
                 window_id,
                 event: WindowEvent::Resized(size),
@@ -601,13 +604,20 @@ impl AppState {
         suggested_size: PhysicalSize<u32>,
         scale_factor: f64,
     ) {
-        HANDLER
-            .events()
-            .push_back(EventWrapper::ScaleFactorChanged {
-                window,
-                suggested_size,
-                scale_factor,
-            });
+        if !HANDLER.in_callback.swap(true, Ordering::AcqRel) {
+            eprintln!("emitting scale factor changed");
+            HANDLER.handle_scale_factor_changed_event(&window, suggested_size, scale_factor);
+            HANDLER.set_in_callback(false);
+        } else {
+            eprintln!("queing scale factor changed");
+            HANDLER
+                .events()
+                .push_back(EventWrapper::ScaleFactorChanged {
+                    window,
+                    suggested_size,
+                    scale_factor,
+                });
+        }
     }
 
     pub fn stop() {
@@ -648,6 +658,7 @@ impl AppState {
                     suggested_size,
                     scale_factor,
                 } => {
+                    eprintln!("emitting queued scale factor event");
                     HANDLER.handle_scale_factor_changed_event(
                         &window,
                         suggested_size,
