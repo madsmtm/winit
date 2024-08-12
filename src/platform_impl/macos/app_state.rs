@@ -577,6 +577,18 @@ impl AppState {
         }
     }
 
+    pub fn handle_resize(window_id: WindowId, size: PhysicalSize<u32>) {
+        if !HANDLER.in_callback.swap(true, Ordering::AcqRel) {
+            HANDLER.handle_nonuser_event(Event::WindowEvent {
+                window_id,
+                event: WindowEvent::Resized(size),
+            });
+            HANDLER.set_in_callback(false);
+        } else {
+            panic!("skipped resize");
+        }
+    }
+
     pub fn queue_event(event: Event<Never>) {
         if !is_main_thread() {
             panic!("Event queued from different thread: {event:#?}");

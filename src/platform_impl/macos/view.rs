@@ -233,7 +233,8 @@ declare_class!(
             // 2. Even when a window resize does occur on a new tabbed window, it contains the wrong size (includes tab height).
             let logical_size = LogicalSize::new(rect.size.width as f64, rect.size.height as f64);
             let size = logical_size.to_physical::<u32>(self.scale_factor());
-            self.queue_event(WindowEvent::Resized(size));
+            AppState::handle_resize(self.window_id(), size);
+            // self.queue_event(WindowEvent::Resized(size));
         }
 
         #[method(updateLayer)]
